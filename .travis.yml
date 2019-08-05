@@ -20,3 +20,17 @@ after_success:
   - docker push billkeller/multi-nginx
   - docker push billkeller/multi-server
   - docker push billkeller/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-652537380933
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: 
+      secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
