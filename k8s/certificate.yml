@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: bill-keller-com-tls
+spec:
+  secretName: bill-keller-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: bill-keller.com
+  dnsNames:
+    - bill-keller.com
+    - www.bill-keller.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - bill-keller.com
+          - www.bill-keller.com
